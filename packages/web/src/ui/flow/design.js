@@ -378,26 +378,8 @@ const actions = ({ sources }) => {
         }
         // NOTE: the filelist cannot be passed as the event gets reset
         return { sink: 'fs', data: files, path: 'realFs', urls: [] }
-      }),
-
-    // load remote file from query/hash (url options)
-    sources.titleBar
-      .filter((x) => x !== undefined)
-      .tap((x) => console.log('window href processing', x))
-      .map((url) => {
-        const origin = url
-        let documentUri = fetchUriParams(url, 'uri', undefined)
-        if (!documentUri) {
-          const urlParts = new URL(url)
-          // support URL HASH parts as well
-          if (urlParts.hash.length === 0) return undefined
-          documentUri = urlParts.hash.slice(1)
-        }
-        const uriParts = new URL(documentUri)
-        const urls = [documentUri]
-        const { protocol, pathname } = uriParts
-        return { sink: protocol.replace(':', ''), urls, origin, path: pathname, proxy: true }
       })
+
   ])
     .filter((x) => x !== undefined)
     .thru(holdUntil(setDesignSettings$)) // only after FIXME : this does not seem to work

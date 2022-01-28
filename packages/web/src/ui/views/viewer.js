@@ -113,7 +113,7 @@ const viewer = (state, i18n) => {
       }
 
       if (zoomToFit) {
-        controls.zoomToFit.tightness = 1.5
+        controls.zoomToFit.tightness = 2.5
         const updated = orbitControls.zoomToFit({ controls, camera, entities: prevEntities })
         controls = { ...controls, ...updated.controls }
         zoomToFit = false

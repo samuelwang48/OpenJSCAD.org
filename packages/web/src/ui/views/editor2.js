@@ -49,13 +49,6 @@ const createWrapper = (state, callbackToStream) => {
         cm.replaceSelection(spaces)
       }
     })
-
-    // inject style sheet for the editor
-    const head = document.getElementsByTagName('HEAD')[0]
-    const link = document.createElement('LINK')
-    link.rel = 'stylesheet'
-    link.href = './css/codemirror.css'
-    head.appendChild(link)
   }
   return wrapper
 }
