@@ -112,6 +112,43 @@ const makeJscad = async (targetElement, options) => {
   setTimeout(() => { document.getElementById('toggleAxes').click() }, 100)
   setTimeout(() => { document.getElementById('toggleAxes').click() }, 200)
 
+  window.addEventListener('rukkou-jscad', (e) => {
+    const fileTree = [{
+      ext: 'js',
+      fullPath: '/changes.js',
+      mimetype: 'javascript',
+      name: 'changes.js',
+      source: e.detail.source
+    }];
+    editorCallbackToStream.callback({ type: 'read', id: 'loadRemote', data: fileTree })
+  });
+
+  setTimeout(() => {
+    const rukkouJscad = new CustomEvent('rukkou-jscad', {
+      detail: {
+        source: `
+const jscad = require('@jscad/modeling')
+const { cube, cuboid, cylinder, cylinderElliptic, ellipsoid, geodesicSphere, roundedCuboid, roundedCylinder, sphere, torus } = jscad.primitives
+const { translate } = jscad.transforms
+
+const main = () => {
+  const allPrimitives = [
+    cube()
+  ]
+
+  return allPrimitives.map((primitive, index) => {
+    return translate([0, 0, 0], primitive)
+  })
+}
+
+module.exports = { main }
+        `
+      }
+    });
+
+    window.dispatchEvent(rukkouJscad);
+  }, 2000)
+
   // we return a function to allow setting/modifying params
   const mainParams = callbackToObservable()
   return (params) => {

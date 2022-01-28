@@ -27,7 +27,7 @@ const dom = (state, i18n, paramsCallbacktoStream, editorCallbackToStream) => {
 
   const output = html`
   <div id='container'>
-    <div id='header'>
+    <div id='header' style="display: none;">
       <span id='jscadName'>
         <h3>JSCAD</h3>
       </span>
@@ -37,12 +37,18 @@ const dom = (state, i18n, paramsCallbacktoStream, editorCallbackToStream) => {
       ${io}
     </div>
 
-    ${toolBar}
-    ${viewerControls}
+    <div style="display: block;">
+      ${toolBar}
+    </div>
+    <div style="display: none;">
+      ${viewerControls}
+    </div>
 
     <!-- bare bones essentials -->
     <!--Status information/errors-->
-    ${status}
+    <div style="display: none;">
+      ${status}
+    </div>
 
     <!--Viewer-->
     ${viewer}
@@ -55,7 +61,6 @@ const dom = (state, i18n, paramsCallbacktoStream, editorCallbackToStream) => {
     ${state.activeTool === 'editor' ? editor : ''}
     <!-- Help Popup -->
     ${help}
-
   </div>
   `
 
