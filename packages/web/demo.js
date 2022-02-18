@@ -18,3 +18,10 @@ rootEl.appendChild(el1)
  // example of setting settings
  // jscadInst2({design: {'blabla': 'bla'}})
  rootEl.appendChild(el2) */
+
+    // inject style sheet for the editor
+    const head = document.getElementsByTagName('HEAD')[0]
+    const link = document.createElement('LINK')
+    link.rel = 'stylesheet'
+    link.href = './css/codemirror.css'
+    head.appendChild(link)

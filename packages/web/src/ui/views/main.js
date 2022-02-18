@@ -37,7 +37,7 @@ const dom = (state, i18n, paramsCallbacktoStream, editorCallbackToStream) => {
       ${io}
     </div>
 
-    <div style="display: block;">
+    <div style="display: none;">
       ${toolBar}
     </div>
     <div style="display: none;">
