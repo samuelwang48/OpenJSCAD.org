@@ -14,7 +14,7 @@ const dom = (state, i18n, paramsCallbacktoStream, editorCallbackToStream) => {
   const editor = require('./editor2').editorWrapper(state, editorCallbackToStream, i18n)
   const toolBar = require('./toolbar')(state, i18n)
 
-  const viewer = require('./viewer')(state, i18n)
+  const viewer = require('./viewer').viewer(state, i18n)
   const viewerControls = require('./viewerControls')(state, i18n)
 
   if (state.themes && state.themes.themeSettings) {
