@@ -5,7 +5,26 @@ const { withLatestFrom } = require('../../most-utils')
 const reducers = {
   setErrors: (state, errorPayload) => {
     const { error } = errorPayload
+
+    const rukkouJscadErrors = new CustomEvent('rukkou-jscad-errors', {
+      detail: {
+        error: error
+      }
+    });
+
+    window.dispatchEvent(rukkouJscadErrors);
+
+
     const status = Object.assign({}, state.status, { error, busy: false })
+
+    const rukkouJscad = new CustomEvent('rukkou-jscad', {
+      detail: {
+        source: 'function main() { return null; }; module.exports = { main }'
+      }
+    });
+
+    window.dispatchEvent(rukkouJscad);
+
     return { status }
   },
   clearErrors: (state, _) => {

@@ -85,7 +85,6 @@ const editorWrapper = (state, editorCallbackToStream) => {
     }
     extraKeys[key] = (cm) => {
       const fileTree = createFileTree(cm)
-      debugger;
       if (fileTree) editorCallbackToStream.callback({ type: 'read', id: 'loadRemote', data: fileTree })
     }
     editor.setOption('extraKeys', extraKeys)
